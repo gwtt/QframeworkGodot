@@ -3,4 +3,4 @@
 
 # QFrameworkGodot 简介 Intro
 
-本项目基于https://github.com/liangxiegame/QFramework实现的一个godot插件，使用纯gdscript实现的版本。目前还在完善
+本项目基于https://github.com/liangxiegame/QFramework 实现的一个godot插件，使用纯gdscript实现的版本。目前还在完善
