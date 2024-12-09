@@ -1,3 +1,6 @@
+## 命令层，主要用来更改system和model的状态，属于直接行为
+## 可以发送event和command
+
 class_name AbstractCommand extends RefCounted
 
 var m_architecture: Architecture

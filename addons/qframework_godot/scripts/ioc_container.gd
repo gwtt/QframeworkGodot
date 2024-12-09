@@ -1,7 +1,7 @@
 class_name IOCContainer extends RefCounted
 
 var m_instances :Dictionary = {}
-var key
+
 func register(gdscript: GDScript):
 	var key = gdscript.get_global_name()
 	var instance = gdscript.new()

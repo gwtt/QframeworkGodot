@@ -1,3 +1,5 @@
+## 此类是数据的定义，为了方便连接信号采用
+
 class_name BindableProperty extends Resource
 
 signal value_changed(new_value)

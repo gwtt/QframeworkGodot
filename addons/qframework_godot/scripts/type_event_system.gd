@@ -1,3 +1,5 @@
+## 事件总线
+
 class_name TypeEventSystem extends RefCounted
 
 static var global = TypeEventSystem.new()

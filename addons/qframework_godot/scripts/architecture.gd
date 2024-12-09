@@ -1,3 +1,8 @@
+## 架构中心，负责调度所有类的关系。
+## 包含两个概念：ioc_container容器和m_type_event_system事件总线
+## 所有的层都需要向容器去注册。获取其他层的时候也要借助这个容器去获取。
+## 所有的信号和事件可以借助事件总线去实现。形成多对多关系。
+
 class_name Architecture extends RefCounted
 
 signal on_register_patch(architecture)
@@ -26,7 +31,6 @@ static func make_sure_architecture(type):
 		m_architecture.m_systems.clear()
 		m_architecture.m_inited = true
 
-#TODO 需要实现
 func on_init() -> void:
 	pass
 	
