@@ -10,3 +10,7 @@ func on_init():
 	else:
 		count.set_value_without_event(0)
 	count.register(func (new_count): storage.save_int(new_count))
+	count.register(event_send)
+	
+func event_send(new_count):
+	send_event("event_count", new_count)

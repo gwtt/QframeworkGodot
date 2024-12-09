@@ -10,14 +10,14 @@ func _ready() -> void:
 	controller.set_architecture(architecture)
 	btn_add.pressed.connect(add)
 	btn_sub.pressed.connect(sub)
-	architecture.get_model(PathUtil.counter_app_model).count.register_and_refresh(
+	architecture.get_model(CounterAppModel).count.register_and_refresh(
 		func(count):
 			count_text.text = str(count);
 	)
 	
 func add():
 	architecture.send_command(IncreaseCountCommand.new())
-	var temp = architecture.get_model(PathUtil.counter_app_model)
+	var temp = architecture.get_model(CounterAppModel)
 	print(temp.count.value)
 
 func sub():

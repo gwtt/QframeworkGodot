@@ -26,6 +26,7 @@ static func make_sure_architecture(type):
 		m_architecture.m_systems.clear()
 		m_architecture.m_inited = true
 
+#TODO 需要实现
 func on_init() -> void:
 	pass
 	
@@ -49,8 +50,8 @@ func register_model(model: GDScript):
 		instance_model.on_init()
 
 func register_utility(utility: GDScript):
-	m_container.register(utility)
-
+	var instance_model = m_container.register(utility)
+	
 func get_system(gdscript: GDScript):
 	return m_container.get_value(gdscript)
 
