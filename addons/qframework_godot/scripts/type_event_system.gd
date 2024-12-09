@@ -1,19 +1,31 @@
 class_name TypeEventSystem extends RefCounted
 
-var m_events:EasyEvents
-var global = TypeEventSystem.new()
+static var global = TypeEventSystem.new()
 
-func send_type(type) -> void:
-	m_events.get_event(type).call()
-
-func send_type_event(type, e) -> void:
-	m_events.get_event(type).call(e)
-
-func register(on_event):
-	return m_events.get_or_add_event(on_event)
-
-# TODO
-func un_register(on_event):
-	var e = m_events.get_event(on_event)
-	if e != null:
-		e.un
+## 推送事件
+func send_event(destination: String, payload = null) -> void:
+	if payload == null:
+		payload = []
+	if not payload is Array:
+		payload = [payload]
+	payload.insert(0, _get_destination_signal(destination))	
+	callv("emit_signal", payload)
+	
+## 订阅
+func register_event(destination: String, callback: Callable) -> void:
+	var dest_signal: String = _get_destination_signal(destination)
+	if not is_connected(dest_signal, callback):
+		connect(dest_signal, callback)
+		
+## 取消订阅
+func unregister_event(destination: String, callback: Callable) -> void:
+	var dest_signal: String = _get_destination_signal(destination)
+	if is_connected(dest_signal, callback):
+		disconnect(dest_signal, callback)
+		
+## 获取事件名		
+func _get_destination_signal(destination: String) -> String:
+	var dest_signal: String = "EventBus|%s" % destination
+	if not has_user_signal(dest_signal):
+		add_user_signal(dest_signal)
+	return dest_signal

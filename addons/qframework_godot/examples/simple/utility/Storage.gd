@@ -1,12 +1,11 @@
-class_name Storage extends IUtility
+class_name Storage extends AbstractUtility
 
 const SAVE_GAME_PATH = "user://save.save"
 
 class temp_class extends Resource:
 	@export var temp_value:int
 
-
-func save_int(value:int):
+func save_int(value: int):
 	var file = FileAccess.open(SAVE_GAME_PATH, FileAccess.WRITE)
 	var data = {
 		'count': value

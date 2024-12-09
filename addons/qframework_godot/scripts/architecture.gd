@@ -2,9 +2,9 @@ class_name Architecture extends RefCounted
 
 signal on_register_patch(architecture)
 
-var m_inited :bool = false
-var m_systems :HashSet = HashSet.new()
-var m_models :HashSet = HashSet.new()
+var m_inited: bool = false
+var m_systems: HashSet = HashSet.new()
+var m_models: HashSet = HashSet.new()
 static var m_architecture: Architecture
 
 static func interface(type) -> Architecture:
@@ -16,7 +16,7 @@ static func make_sure_architecture(type):
 	if m_architecture == null:
 		m_architecture = type.new()
 		m_architecture.on_init()
-	
+		m_architecture.on_register_patch.emit()
 		for architecture_model in m_architecture.m_models._data:
 			architecture_model.on_init()
 		m_architecture.m_models.clear()
@@ -26,12 +26,10 @@ static func make_sure_architecture(type):
 		m_architecture.m_systems.clear()
 		m_architecture.m_inited = true
 
-func invoke_signal():
-	on_register_patch.emit(m_architecture)
-
 func on_init() -> void:
 	pass
-
+	
+#region container
 var m_container: IOCContainer = IOCContainer.new()
 
 func register_system(system: GDScript):
@@ -62,24 +60,20 @@ func get_model(gdscript: GDScript):
 func get_utility(gdscript: GDScript):
 	return m_container.get_value(gdscript)
 
-func send_command(command):
+func send_command(command: AbstractCommand):
 	command.set_architecture(self)
 	return command.on_execute_result()
+#endregion
 
-func send_command_without_result(command):
-	command.set_architecture(self)
-	command.on_execute_result()
+#region EventBus
+var m_type_event_system: TypeEventSystem = TypeEventSystem.global
 
-var m_type_event_system: TypeEventSystem
+func send_event(destination: String, payload):
+	m_type_event_system.send_event(destination, payload)
 
-func send_type_event(type ,e=null):
-	if !e:
-		m_type_event_system.send_type(type)
-	else:
-		m_type_event_system.send_type_event(type, e)
+func register_event(destination: String, on_event: Callable):
+	m_type_event_system.register_event(destination, on_event)
 
-func register_event(on_event: Callable) -> IUnRegister:
-	return m_type_event_system.register(on_event)
-
-func unregister_event(on_event: Callable) -> void:
-	m_type_event_system.un_register(on_event)
+func unregister_event(destination: String, on_event: Callable):
+	m_type_event_system.unregister_event(destination, on_event)
+#endregion

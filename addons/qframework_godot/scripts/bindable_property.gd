@@ -14,16 +14,16 @@ var value:
 func set_value_without_event(new_value) -> void:
 	value = new_value
 
-func register(on_value_changed:Callable):
+func register(on_value_changed: Callable):
 	value_changed.connect(on_value_changed)
 
-func register_with_init_value(default_value, on_value_changed:Callable):
+func register_with_init_value(default_value, on_value_changed: Callable):
 	register(on_value_changed)
 	value = default_value
 
-func register_and_refresh(on_value_changed:Callable):
+func register_and_refresh(on_value_changed: Callable):
 	value_changed.connect(on_value_changed)
 	value_changed.emit(value)
 
-func unregister(on_value_changed:Callable):
+func unregister(on_value_changed: Callable):
 	value_changed.disconnect(on_value_changed)

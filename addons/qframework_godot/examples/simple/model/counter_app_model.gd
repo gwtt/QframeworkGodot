@@ -8,4 +8,3 @@ func on_init():
 	var load_int = storage.load_int()
 	if load_int:
 		count.set_value_without_event(load_int)
-

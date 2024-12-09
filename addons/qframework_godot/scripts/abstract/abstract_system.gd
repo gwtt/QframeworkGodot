@@ -16,3 +16,9 @@ func get_system(gdscript: GDScript) -> AbstractSystem:
 
 func get_model(gdscript: GDScript) -> AbstractModel:
 	return m_architecture.get_model(gdscript)
+
+func send_command(command: AbstractCommand):
+	m_architecture.send_command(command)
+
+func register_event(destination: String, callback: Callable):
+	m_architecture.register_event(destination, callback)

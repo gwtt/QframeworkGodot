@@ -13,3 +13,6 @@ func set_architecture(architecture: Architecture):
 
 func get_utility(type):
 	return m_architecture.get_utility(type)
+
+func send_event(destination: String, payload):
+	m_architecture.send_event(destination, payload)
