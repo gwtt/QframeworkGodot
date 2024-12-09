@@ -63,6 +63,10 @@ func get_utility(gdscript: GDScript):
 func send_command(command: AbstractCommand):
 	command.set_architecture(self)
 	return command.on_execute_result()
+	
+func send_query(query: AbstractQuery):
+	query.set_architecture(self)
+	return query.on_do_result()
 #endregion
 
 #region EventBus

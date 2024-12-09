@@ -6,7 +6,7 @@ extends Control
 
 var architecture:Architecture
 func _ready() -> void:
-	architecture = CounterApp.interface(CounterApp)
+	architecture = CounterAppArchitecture.interface(CounterAppArchitecture)
 	btn_add.pressed.connect(add)
 	btn_sub.pressed.connect(sub)
 	architecture.get_model(PathUtil.counter_app_model).count.register_and_refresh(

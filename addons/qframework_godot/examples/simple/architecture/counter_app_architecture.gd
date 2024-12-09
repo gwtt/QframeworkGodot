@@ -1,4 +1,4 @@
-class_name CounterApp extends Architecture
+class_name CounterAppArchitecture extends Architecture
 
 func on_init():
 	self.register_system(PathUtil.achievement_system)
