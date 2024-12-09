@@ -3,10 +3,11 @@ extends Control
 @onready var count_text: Label = $CountText
 @onready var btn_add: Button = $BtnAdd
 @onready var btn_sub: Button = $BtnSub
-
-var architecture:Architecture
+var controller: AbstractController = AbstractController.new()
+var architecture: Architecture
 func _ready() -> void:
 	architecture = CounterAppArchitecture.interface(CounterAppArchitecture)
+	controller.set_architecture(architecture)
 	btn_add.pressed.connect(add)
 	btn_sub.pressed.connect(sub)
 	architecture.get_model(PathUtil.counter_app_model).count.register_and_refresh(
