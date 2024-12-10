@@ -1,7 +1,7 @@
 ## 表现层，负责接受输入和状态变化时的表现
 ## 可以获取system、model、发送command、监听event
 
-class_name AbstractController extends GDScript
+class_name AbstractController extends Node
 
 var m_architecture: Architecture
 
@@ -21,7 +21,7 @@ func get_model(type):
 	return m_architecture.get_model(type) 
 	
 func send_command(type):
-	return m_architecture.get_controller(type)
+	return m_architecture.send_command(type)
 
 func register_event(destination: String,on_event: Callable):
 	m_architecture.register_event(destination, on_event)
