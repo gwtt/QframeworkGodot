@@ -5,7 +5,7 @@ extends AbstractController
 @onready var btn_sub: Button = $BtnSub
 var controller: AbstractController = AbstractController.new()
 func _ready() -> void:
-	controller.set_architecture(CounterAppArchitecture.interface(CounterAppArchitecture))
+	controller.set_architecture(CounterAppArchitecture)
 	btn_add.pressed.connect(add)
 	btn_sub.pressed.connect(sub)
 	controller.get_model(CounterAppModel).count.register_and_refresh(
