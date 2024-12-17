@@ -20,9 +20,6 @@ func get_system(type):
 func get_model(type):
 	return m_architecture.get_model(type) 
 	
-func send_command(type):
-	return m_architecture.send_command(type)
-
 func register_event(destination: String,on_event: Callable):
 	m_architecture.register_event(destination, on_event)
 

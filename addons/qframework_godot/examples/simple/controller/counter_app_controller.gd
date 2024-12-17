@@ -13,12 +13,8 @@ func _ready() -> void:
 			count_text.text = str(count);
 	)
 
-	
 func add():
-	controller.send_command(IncreaseCountCommand.new())
-	var temp = controller.get_model(CounterAppModel)
-	print(temp.count.value)
+	controller.get_model(CounterAppModel).count.value += 1
 
 func sub():
-	controller.send_command(DecreaseCountCommand.new())
-	print(controller.get_model(CounterAppModel).count.value)
+	controller.get_model(CounterAppModel).count.value -= 1
