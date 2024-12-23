@@ -40,7 +40,7 @@ func register_model(model: GDScript):
 	var instance_model = m_container.register(model)
 	instance_model.set_architecture(self)
 	if !m_inited:
-		m_systems.append(instance_model)
+		m_models.append(instance_model)
 	else:
 		instance_model.on_init()
 

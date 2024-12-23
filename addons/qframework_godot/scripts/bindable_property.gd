@@ -19,7 +19,7 @@ func set_value_without_event(new_value) -> void:
 func register(on_value_changed: Callable):
 	value_changed.connect(on_value_changed)
 
-func register_with_init_value(default_value, on_value_changed: Callable):
+func register_with_init_value(default_value, on_value_changed: Callable = func(new_value): pass):
 	register(on_value_changed)
 	value = default_value
 
