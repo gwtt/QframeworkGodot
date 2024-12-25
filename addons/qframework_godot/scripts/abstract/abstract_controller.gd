@@ -1,5 +1,5 @@
 ## 表现层，负责接受输入和状态变化时的表现
-## 可以获取system、model、发送command、监听event
+## 可以获取system、model、监听event
 
 class_name AbstractController extends Node
 
