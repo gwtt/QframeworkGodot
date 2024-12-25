@@ -57,11 +57,11 @@ func send_event(destination: String, payload):
 	m_architecture.send_event(destination, payload)
 
 func save_model(index: int = 0):
-	var result = SaveManager.save_model(0, self)
+	var result = SaveManager.save_model(index, self)
 	if result != OK:
 		print("保存失败：", result)
 		
 func load_model(index:int = 0):
-	var result = SaveManager.load_model(0, self)
+	var result = SaveManager.load_model(index, self)
 	if result != OK:
 		print("加载失败：", result)

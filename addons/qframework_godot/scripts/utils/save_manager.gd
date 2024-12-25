@@ -53,8 +53,8 @@ static func load_model(slot_id: int, model: AbstractModel) -> Error:
 	model.load_save_data(save_data)
 	
 	return OK
+	
 ## 保存多个模型（向下兼容）
-
 static func save_game(slot_id: int, models: Array) -> Error:
 	var result = OK
 	for model in models:
