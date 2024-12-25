@@ -3,14 +3,16 @@ class_name CounterAppModel extends AbstractModel
 var count:BindableProperty = BindableProperty.new()
 
 func on_init():
-	var storage = self.get_utility(Storage) as Storage
-	var load_int = storage.load_int()
-	if load_int:
-		count.set_value_without_event(load_int)
-	else:
-		count.set_value_without_event(0)
-	count.register(func (new_count): storage.save_int(new_count))
-	count.register(event_send)
+	count.register_with_init_value_no_emit_first(0, on_cound_change)
+	## 记录存档的属性
+	register_saveable_properties([
+		"count",
+	])
+	## 恢复存档
+	super.on_init()
 	
-func event_send(new_count):
+func on_cound_change(new_count):
+	save_model()
 	send_event("event_count", new_count)
+
+	
