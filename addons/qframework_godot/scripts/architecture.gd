@@ -55,10 +55,6 @@ func get_model(gdscript: GDScript):
 
 func get_utility(gdscript: GDScript):
 	return m_container.get_value(gdscript)
-
-func send_query(query: AbstractQuery):
-	query.set_architecture(self)
-	return query.on_do_result()
 #endregion
 
 #region EventBus
